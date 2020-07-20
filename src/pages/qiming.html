@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <title>在线起名 - 创企汇一站式服务</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="../../assets/img/favicon.ico">
+    <link href="../../assets/css/base.css" rel="stylesheet">
+    <link href="../../assets/css/qiming.css" rel="stylesheet">
+    <script src="../../assets/js/rem.js"></script>
+</head>
+
+<body>
+    <div id="app" class="body-wrapper">
+        <div class="submit-form">
+            <div class="quick-form">
+                <div class="quick-form-item">
+                    <div class="cover-input" @click="addressVisible = true;"><i class="el-icon-location"
+                            aria-hidden="true"
+                            style="margin-left: -.15rem; font-size: .3rem; color: #f9967a; margin-right: .15rem; "></i>{{submitForm.city || '意向城市'}}
+                    </div>
+                </div>
+                <div class="quick-form-item">
+                    <div class="cover-input" @click="industryVisible = true;"><i class="el-icon-s-data"
+                            aria-hidden="true"
+                            style="margin-left: -.15rem; font-size: .3rem; color: #f9967a; margin-right: .15rem; "></i>{{submitForm.industry || '公司行业'}}
+                    </div>
+                </div>
+                <div class="quick-form-item" style="margin-bottom: .5rem;">
+                    <div class="select-button" slot="company_name_length">
+                        <div class="select-view-slot" @click="selectOptionVisible = !selectOptionVisible">
+                            <span class="label"> <i class="el-icon-s-opportunity" aria-hidden="true"
+                                    style="margin-left: -.15rem; font-size: .3rem; color: #f9967a; margin-right: .15rem; "></i>
+                                {{selectText || '字号长度'}}</span>
+                            <span class="icon-dropdown"></span>
+                        </div>
+                        <div ref="mSelectOption" class="select-option-slot" v-if="selectOptionVisible"
+                            style="display: none;">
+                            <div class="select-option" @click="selectChange">两个字</div>
+                            <div class="select-option" @click="selectChange">三个字</div>
+                            <div class="select-option" @click="selectChange">四个字</div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="quick-form-item"><input v-model="submitForm.name" name="name" type="text" placeholder="请输入姓名"/></div>
+            <div class="quick-form-item" style="margin-bottom: .5rem;"><input v-model="submitForm.mobile" name="mobile" type="text" placeholder="请输入手机号"/></div>-->
+                <div class="quick-form-item"><button class="submit-button" @click="popConfirm">智能起名</button></div>
+            </div>
+        </div>
+
+        <div class="block">
+            <div class="block-title">AI智能起名，建筑驰名商标</div>
+            <div class="block-bg">
+                <div class="block-bg-left">使用大数据分析，人工智能，结 合商业特点，定制只要输入行业， 人工智能生成只于您的企业名称， 简约而不简单</div>
+            </div>
+        </div>
+
+        <div class="block">
+            <div class="block-item-title">公司起名要注意的事项，了解下</div>
+            <div class="block-grid">
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p1.png" />
+                    <h3>不能重名</h3>
+                    <div class="desc">相同或相似行业存在重名公司，不能注册</div>
+                </div>
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p2.png" />
+                    <h3>不能触犯驰名商标</h3>
+                    <div class="desc">如：”阿里巴巴“是驰名 商标，不能注册为公司名字</div>
+                </div>
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p3.png" />
+                    <h3>不能与知名公司名字混淆</h3>
+                    <div class="desc">如：“趣头条”有趣头条不 能注册</div>
+                </div>
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p4.png" />
+                    <h3>尽量不用地区名称及简称</h3>
+                    <div class="desc">如：北京、上海，苏等不能注册 为公司名字</div>
+                </div>
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p5.png" />
+                    <h3>不能使用繁体、数字、英文</h3>
+                    <div class="desc">公司名称只能使用简体中文</div>
+                </div>
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p6.png" />
+                    <h3>不能使用行业通词汇</h3>
+                    <div class="desc">如：“安徽面粉食品有限公司” 不能注册为公司名字</div>
+                </div>
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p7.png" />
+                    <h3>不能使用人名字号</h3>
+                    <div class="desc">如：“马云”等不能注册为 公司名字</div>
+                </div>
+                <div class="block-grid-item">
+                    <img src="../../assets/img/p8.png" />
+                    <h3>不能带有宗教色彩</h3>
+                    <div class="desc">如：“基督教”等不能注册为 公司名字</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="font-size: .24rem; text-align: center; background: #fff; padding: .85rem 0 .5rem 0; color: #aaa; ">
+            Copyright &copy; 2019 创企汇 版权所有</div>
+
+        <div ref="mDialog" class="m-dialog" v-if="mDialogVisible" style="display: none;">
+            <div class="m-dialog__wrapper">
+                <div class="m-dialog__wrapper-header"><span class="title">填写信息查询结果</span></div>
+                <div class="m-dialog__wrapper-content">
+                    <!--<div style="color: rgb(136, 136, 136); font-size: 0.24rem; margin-bottom: 0.3rem; line-height: 1.7; ">请填写您的以下联系方式，方便我们财务顾问告知您在线起名的结果</div>-->
+                    <div style="margin-bottom: .25rem;"><input ref="mName" class="m-input"
+                            style="width: 100%; box-sizing: border-box; border-radius: .05rem; " autocomplete="off"
+                            type="text" v-model="submitForm.name" placeholder="请输入您的姓名" /></div>
+                    <div style="margin-bottom: .25rem;"><input ref="mMobile" class="m-input"
+                            style="width: 100%; box-sizing: border-box; border-radius: .05rem; " autocomplete="off"
+                            type="text" v-model="submitForm.mobile" placeholder="请输入手机号" /></div>
+                    <div>
+                        <el-checkbox v-model="submitForm.agreeIt" size="mini" /><span
+                            style="font-size: .24rem; color: #888; ">我已经阅读隐私协议</span></div>
+                </div>
+                <div class="m-dialog__wrapper-footer">
+                    <div class="m-button-group">
+                        <button @click="submitOnForm" class="m-button submit button--primary plain"
+                            :disabled="!submitForm.agreeIt">一键查询</button>
+                        <button class="m-button negative button--info plain" @click="mDialogVisible = false">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div v-if="industryVisible" ref="mIndustry" class="m-page company-industry" style="display: none;">
+            <div class="m-page-header clear-fix"><span class="page-header-title">请选择公司行业</span><span
+                    class="page-btn-close" @click="industryVisible = false">关闭</span></div>
+            <div class="m-page-input">
+                <div class="m-page-input-flex">
+                    <input placeholder="找不到对应行业？" v-model="submitForm.industry" class="m-input-lite" /><button
+                        class="m-button-lite" @click="changeIndustry(submitForm.industry)">确定</button>
+                </div>
+            </div>
+            <div class="m-page-content">
+                <div class="industry-group-flex" v-for="(rows,i) in industryList" :key="'industry-group-' + i">
+                    <span class="industry-title">{{rows.group}}</span>
+                    <div class="industry-group-item">
+                        <div class="industry-sub-item" v-for="(val,n) in rows.list"
+                            :key="'industry-sub-item-' + i + '-' + n" @click="changeIndustry(val)">{{val}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="addressVisible" ref="mAddress" class="m-page address-list" style="display: none;">
+            <div class="m-page-header clear-fix"><span class="page-header-title">请选择所在城市</span><span
+                    class="page-btn-close" @click="addressVisible = false">关闭</span></div>
+            <div class="m-page-content">
+                <div class="m-page-context-flex">
+                    <div class="left-side">
+                        <div class="left-side-item" :class="[
+                    curIndex === 0 ? 'cur' : ''
+                    ]" @click="curIndex = 0">常用</div>
+                        <div class="left-side-item" :class="[
+                    curIndex === 1 ? 'cur' : ''
+                    ]" @click="curIndex = 1">直辖市</div>
+                        <!-- <div class="left-side-item" v-for="(rows,i) in cityList" v-if="rows.value !== '110000' && rows.value !== '120000' && rows.value !== '310000' && rows.value !== '500000'" @click="curIndex = i + 2" :class="[
+                    curIndex === (i+2) ? 'cur' : ''
+                    ]">{{cityFormat(rows.label)}}</div> -->
+                        <div class="left-side-item" v-for="(rows,i) in citydata" @click="curIndex = i + 2"
+                            :class="[curIndex === (i+2) ? 'cur' : '']">{{rows}}</div>
+                    </div>
+                    <div class="main-side">
+                        <div style="margin: .3rem;">
+                            <div class="main-side-block" v-if="curIndex === 0">
+                                <div class="main-side-title">当前定位</div>
+                                <div class="main-side-list">
+                                    <div class="main-side-item" @click="changeCity(defaultLocCityId, defaultLoc)"><i
+                                            class="el-icon-location" style="color: #447efe;"></i>{{defaultLoc}}</div>
+                                </div>
+                            </div>
+
+                            <div class="main-side-block" v-if="curIndex === 1">
+                                <div class="main-side-list">
+                                    <div class="main-side-item" @click="changeCity(110100, '北京')">北京</div>
+                                    <div class="main-side-item" @click="changeCity(310100, '上海')">上海</div>
+                                    <div class="main-side-item" @click="changeCity(500100, '重庆')">重庆</div>
+                                    <div class="main-side-item" @click="changeCity(120100, '天津')">天津</div>
+                                </div>
+                            </div>
+
+                            <div v-if="curIndex > 1" class="main-side-block">
+                                <div class="main-side-list">
+                                    <div v-for="(rows,i) in citynamelist" :key="'main-side-item-' + i"
+                                        class="main-side-item" @click="changeCity(rows.value, rows)">
+                                        {{cityFormat(rows)}}</div>
+                                    <!-- <div class="main-side-item" v-for="(rows,i) in otherCityList" :key="'main-side-item-' + i" @click="changeCity(rows.value, rows.label)">{{cityFormat(rows.label)}}</div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="tel:4001551838" class="call-btn"></a>
+    <!-- 咨询按钮，链接直接写在href里 -->
+    <a href="" class="talk-btn"><i></i></a>
+    <div class="talk-box">
+        <div class="talk-title">
+            客服为您服务
+        </div>
+        <p>客服等候多时，有什么可以帮助您的？</p>
+        <i onclick="closebox()"></i>
+    </div>
+
+    <div ref="mTradeWindow" class="m-dialog" v-if="popWindowVisible" style="display: none;">
+        <div class="m-dialog__wrapper" style="background: transparent;">
+            <div class="m-dialog__wrapper-header"
+                style="height: 1.62rem; background: url(assets/img/pop_window_bg.png) center top no-repeat; background-size: 100%; ">
+                <span
+                    style="font-size: .32rem; font-weight: bold; color: #fff; margin: 0 1.5rem; line-height: 1.62rem; display: block; ">创企汇财税
+                    · 在线起名</span>
+            </div>
+            <div class="m-dialog__wrapper-content"
+                style="background: #fff; margin: 0; padding: .35rem .5rem 0 .5rem; border-radius: 0 0 .2rem .2rem; ">
+                <ul class="trade-name-list" v-loading="loading">
+                    <li class="clear-fix" v-for="(rows,i) in tradeNameList" :key="'trade-name-item-' + i "><span
+                            v-html="rows"></span><span class="mini-btn" @click="confirmTradeName(rows)">选择</span>
+                    </li>
+                </ul>
+                <div class="m-dialog__wrapper-footer" style="margin-top: .35rem;">
+                    <div @click="getTradeName"
+                        style="width: 5.56rem; height: 1rem; background: url(assets/img/pop_change_btn.png) center center no-repeat transparent; background-size: 100%; margin: 0 auto;">
+                    </div>
+                </div>
+            </div>
+            <div class="m-dialog__wrapper-footer">
+                <div class="pop-btn-close" @click="popWindowVisible = false"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <div class="nav-item current">
+            <a href="qiming.html">
+                <img src="../../assets/img/qiming_btn_checked.png" />
+                <span>在线起名</span>
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="heming.html">
+                <img src="../../assets/img/heming_btn.png" />
+                <span>在线核名</span>
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="zhuce.html">
+                <img src="../../assets/img/zhce_btn.png" />
+                <span>在线注册</span>
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="xunjia.html">
+                <img src="../../assets/img/xunjia_btn.png" />
+                <span>我要询价</span>
+            </a>
+        </div>
+    </div>
+    <div style="display: none;">
+        <script
+            type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1278196546'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1278196546%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+    </div>
+    <link href=http://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css rel=stylesheet>
+    <script src="http://cdn.bootcss.com/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src=http://cdn.bootcss.com/element-ui/2.12.0/index.js></script>
+    <script src="../../assets/js/m-dialog.js"></script>
+    <script>
+       
+
+        try {
+            new Vue({
+                data() {
+                    return {
+                        loading: true,
+                        popWindowVisible: false,
+                        tradeNameList: [],
+                        // 商品名
+                        curIndex: 0,
+                        cityList: [],
+                        // 城市列表
+                        industryList: [
+                            {
+                                group: "科技类",
+                                list: ["区块链", "生物科技", "网络科技", "信息技术", "电子科技", "软件开发", "教育科技", "农业科技", "环保科技", "游戏", "电子商务", "科技发展",]
+                            },
+                            {
+                                group: "许可类",
+                                list: ["物流", "人力资源", "劳务派遣", "塑料制品", "金属制品", "电子", "设计", "设备工程", "交通设施", "医疗器械", "食品", "日用百货", "进出口", "道路运输"]
+                            },
+                            {
+                                group: "服务类",
+                                list: ["电商", "贸易类", "商务服务", "广告传媒", "文化艺术", "影视文化", "金融投资", "商业保理", "房产经纪", "企业管理", "物业管理", "工程", "文化传播", "建筑装潢", "投资管理", "建筑工程", "装饰工程", "餐饮管理"]
+                            },
+                            {
+                                group: "其他类",
+                                list: ["建筑劳务", "汽车用品", "建材", "货运代理", "服饰贸易", "金属材料销售", "装饰材料销售", "实体店", "店铺", "厂", "工厂", "实业", "机械设备", "制造类", "化妆品", "新材料", "珠宝类", "电器类"]
+                            },
+                        ],
+                        // 所属行业
+                        industryVisible: false,
+                        addressVisible: false,
+                        mDialogVisible: false,
+                        selectText: undefined,
+                        confirmForm: {
+                            code: undefined
+                        },
+                        submitForm: {
+                            city: undefined,
+                            city_id: undefined,
+                            industry: undefined,
+                            name: undefined,
+                            mobile: undefined,
+                            company_name_length: undefined,
+                            agreeIt: true,
+                        },
+                        selectOptionVisible: false,
+                        otherCityList: [],
+                        // 其他城市
+                        urlPrefix: '',
+                        defaultLocCityId: undefined,
+                        citydataname: [
+                            {
+                                city: ["石家庄", "唐山", "秦皇岛", "邯郸", "邢台", "保定", "张家口", "承德", "沧州", "廊坊", "衡水", "定州", "辛集"]
+                            },
+                            {
+                                city: ["太原", "大同", "阳泉", "长治", "晋城", "朔州", "晋中", "运城", "忻州", "临汾", "吕梁"]
+                            },
+                            {
+                                city: ["呼和浩特", "包头", "乌海", "赤峰", "通辽", "鄂尔多斯", "呼伦贝尔", "巴彦淖尔", "乌兰察布", "兴安盟", "锡林郭勒盟", "阿拉善盟"]
+                            },
+                            {
+                                city: ["沈阳", "大连", "鞍山", "抚顺", "本溪", "丹东", "锦州", "营口", "阜新", "辽阳", "盘锦", "铁岭", "朝阳", "葫芦岛"]
+                            },
+                            {
+                                city: ["长春", "吉林", "四平", "辽源", "通化", "白山", "松原", "白城", "延边朝鲜族自治州"]
+                            },
+                            {
+                                city: ["哈尔滨", "齐齐哈尔", "鸡西", "鹤岗", "双鸭山", "大庆", "伊春", "佳木斯", "七台河", "牡丹江", "黑河", "绥化", "大兴安岭地区"]
+                            },
+                            {
+                                city: ["南京", "无锡", "徐州", "常州", "苏州", "南通", "连云港", "淮安", "盐城", "扬州", "镇江", "泰州", "宿迁"]
+                            },
+                            {
+                                city: ["杭州", "宁波", "温州", "嘉兴", "湖州", "绍兴", "金华", "衢州", "舟山", "台州", "丽水"]
+                            },
+                            {
+                                city: ["合肥", "芜湖", "蚌埠", "淮南", "马鞍山", "淮北", "铜陵", "安庆", "黄山", "滁州", "阜阳", "宿州", "六安", "亳州", "池州", "宣城"]
+                            },
+                            {
+                                city: ["福州", "厦门", "莆田", "三明", "泉州", "漳州", "南平", "龙岩", "宁德"]
+                            },
+                            {
+                                city: ["南昌", "景德镇", "萍乡", "九江", "新余", "鹰潭", "赣州", "吉安", "宜春", "抚州", "上饶"]
+                            },
+                            {
+                                city: ["济南", "青岛", "淄博", "枣庄", "东营", "烟台", "潍坊", "济宁", "泰安", "威海", "日照", "莱芜", "临沂", "德州", "聊城", "滨州", "菏泽"]
+                            },
+                            {
+                                city: ["郑州", "开封", "洛阳", "平顶山", "安阳", "鹤壁", "新乡", "焦作", "濮阳", "许昌", "漯河", "三门峡", "南阳", "商丘", "信阳", "周口", "驻马店", "济源"]
+                            },
+                            {
+                                city: ["武汉", "黄石", "十堰", "宜昌", "襄阳", "鄂州", "荆门", "孝感", "荆州", "黄冈", "咸宁", "随州", "恩施土家族苗族自治州", "仙桃", "潜江", "天门", "神农架林区"]
+                            },
+                            {
+                                city: ["长沙", "株洲", "湘潭", "衡阳", "邵阳", "岳阳", "常德", "张家界", "益阳", "郴州", "永州", "怀化", "娄底", "湘西土家族苗族自治州"]
+                            },
+                            {
+                                city: ["广州", "韶关", "深圳", "珠海", "汕头", "佛山", "江门", "湛江", "茂名", "肇庆", "惠州", "梅州", "汕尾", "河源", "阳江", "清远", "东莞", "中山", "潮州", "揭阳", "云浮"]
+                            },
+                            {
+                                city: ["南宁", "柳州", "桂林", "梧州", "北海", "防城港", "钦州", "贵港", "玉林", "百色", "贺州", "河池", "来宾", "崇左"]
+                            },
+                            {
+                                city: ["海口", "三亚", "三沙", "儋州", "五指山", "琼海", "文昌", "万宁", "东方", "定安县", "屯昌县", "澄迈县", "临高县", "白沙黎族自治县", "昌江黎族自治县", "乐东黎族自治县", "陵水黎族自治县", "保亭黎族苗族自治县", "琼中黎族苗族自治县"]
+                            },
+                            {
+                                city: ["成都", "自贡", "攀枝花", "泸州", "德阳", "绵阳", "广元", "遂宁", "内江", "乐山", "南充", "眉山", "宜宾", "广安", "达州", "雅安", "巴中", "资阳", "阿坝藏族羌族自治州", "甘孜藏族自治州", "凉山彝族自治州"]
+                            },
+                            {
+                                city: ["贵阳", "六盘水", "遵义", "安顺", "毕节", "铜仁", "黔西南布依族苗族自治州", "黔东南苗族侗族自治州", "黔南布依族苗族自治州"]
+                            },
+                            {
+                                city: ["昆明", "曲靖", "玉溪", "保山", "昭通", "丽江", "普洱", "临沧", "楚雄彝族自治州", "红河哈尼族彝族自治州", "文山壮族苗族自治州", "西双版纳傣族自治州", "大理白族自治州", "德宏傣族景颇族自治州", "怒江傈僳族自治州", "迪庆藏族自治州"]
+                            },
+                            {
+                                city: ["拉萨", "日喀则", "昌都", "林芝", "山南", "那曲地区", "阿里地区"]
+                            },
+                            {
+                                city: ["西安", "铜川", "宝鸡", "咸阳", "渭南", "延安", "汉中", "榆林", "安康", "商洛"]
+                            },
+                            {
+                                city: ["兰州", "嘉峪关", "金昌", "白银", "天水", "武威", "张掖", "平凉", "酒泉", "庆阳", "定西", "陇南", "临夏回族自治区", "甘南藏族自治州"]
+                            },
+                            {
+                                city: ["西宁", "海东", "海北藏族自治州", "黄南藏族自治州", "海南藏族自治州", "果洛藏族自治州", "玉树藏族自治州", "海西蒙古族藏族自治州"]
+                            },
+                            {
+                                city: ["银川", "石嘴山", "吴忠", "固原", "中卫"]
+                            },
+                            {
+                                city: ["乌鲁木齐", "克拉玛依", "吐鲁番", "哈密", "昌吉回族自治州", "博尔塔拉蒙古自治州", "巴音郭楞蒙古自治州", "阿克苏地区", "克孜勒苏柯尔克孜自治州", "喀什地区", "和田地区", "伊犁哈萨克自治州", "塔城地区", "阿勒泰地区", "石河子", "阿拉尔", "图木舒克", "五家渠", "铁门关"]
+                            },
+                            {
+                                city: ["台湾"]
+                            }
+                        ],
+                        citydata: [
+                            "河北", "山西", "内蒙古", "辽宁", "吉林", "黑龙江", "江苏", "浙江", "安徽", "福建", "江西", "山东", "河南", "湖北", "湖南", "广东", "广西", "海南", "四川", "贵州", "云南", "西藏", "陕西", "甘肃", "青海", "宁夏", "新疆", "台湾"
+                        ],
+                        citynamelist: "",
+                        citynamelist2: ""
+                    }
+                },
+                created() {
+                    this.initView();
+
+                },
+                watch: {
+
+                    curIndex(newVal) {
+
+                        if (newVal > 1) {
+                            this.citynamelist = this.citydataname[newVal - 2].city
+                            console.log(this.citynamelist)
+                        }
+
+                    },
+
+                    mDialogVisible(newVal) {
+                        if (newVal) {
+                            this.$nextTick(() => {
+                                this.$refs.mDialog.style.display = 'flex';
+                                this.$refs.mName.focus();
+                            });
+                        } else {
+                            this.confirmForm.code = undefined;
+                        }
+                    },
+
+                    popWindowVisible(newVal) {
+                        if (newVal) {
+                            this.$nextTick(() => {
+                                this.$refs.mTradeWindow.style.display = 'flex';
+                            });
+                        } else {
+                            this.submitForm = {
+                                city: undefined,
+                                city_id: undefined,
+                                industry: undefined,
+                                name: undefined,
+                                mobile: undefined,
+                                company_name_length: undefined
+                            };
+                        }
+                    },
+
+                    selectOptionVisible(newVal) {
+                        if (newVal) {
+                            this.$nextTick(() => {
+                                this.$refs.mSelectOption.style.display = 'block';
+                            });
+                        }
+                    },
+
+                    selectText(newVal) {
+                        this.submitForm.company_name_length = newVal;
+                    },
+
+                    industryVisible(newVal) {
+                        if (newVal) {
+                            this.$nextTick(() => {
+                                this.$refs.mIndustry.style.display = 'flex';
+                            });
+                        }
+                    },
+
+                    addressVisible(newVal) {
+                        if (newVal) {
+                            this.$nextTick(() => {
+                                this.$refs.mAddress.style.display = 'flex';
+                            });
+                        }
+
+                    },
+                },
+                methods: {
+
+                    confirmTradeName(name) {
+                        // 获取名字接口===============================
+                        $.ajax({
+                            type: 'post',
+                            url: this.urlPrefix + '/api/tradeName',
+                            data: JSON.stringify({
+                                token: this.submitForm.token,
+                                company_name: name,
+                            }),
+                            contentType: 'application/json',
+                            success: res => {
+                                if (res.code === 0) {
+                                    this.$message.success(res.message);
+                                    this.popWindowVisible = false;
+                                } else {
+                                    this.$message.error(res.message);
+                                }
+                                $el.removeAttribute('disabled');
+                            },
+                            dataType: 'json'
+                        });
+                    },
+
+                    submitOnForm(ev) {
+
+                        if (!this.submitForm.name) {
+                            this.$message.error('请填写您的姓名');
+                            this.$refs.mName.focus();
+                            return false;
+                        }
+                        if (!/1[3-9]\d{9}$/.test(this.submitForm.mobile)) {
+                            this.$message.error('手机号码格式错误');
+                            this.$refs.mMobile.focus();
+                            return false;
+                        }
+                        let $el = ev.target;
+                        $el.setAttribute('disabled', 'disabled');
+                        this.submitForm.action = 'qiming';
+                        // 提交数据接口-==================================================
+                        $.ajax({
+                            type: 'post',
+                            url: this.urlPrefix + '/api/submitData',
+                            data: JSON.stringify(this.submitForm),
+                            contentType: 'application/json',
+                            success: res => {
+                                if (res.code === 0) {
+                                    //this.$message.success('提交成功，稍后我们将联系您并通知您结果');
+                                    this.mDialogVisible = false;
+                                    this.popWindowVisible = true;
+                                    this.submitForm.token = res.result.token;
+                                    this.getTradeName();
+                                } else {
+                                    this.$message.error(res.message);
+                                }
+                                $el.removeAttribute('disabled');
+                            },
+                            dataType: 'json'
+                        });
+                    },
+
+                    getTradeName() {
+                        this.loading = true;
+                        this.tradeNameList = [];
+                        $.ajax({
+                            type: 'post',
+                            url: this.urlPrefix + '/api/tradeName',
+                            data: JSON.stringify({
+                                company_name_length: this.submitForm.company_name_length
+                            }),
+                            contentType: 'application/json',
+                            success: res => {
+                                if (res.code === 0) {
+                                    this.loading = false;
+                                    for (let i = 0; i < res.result.length; i++) {
+                                        this.tradeNameList.push(this.submitForm.city + '<strong class="red">' + res.result[i] + '</strong>' + this.submitForm.industry + '有限公司');
+                                        console.log(this.tradeNameList);
+                                    }
+                                }
+                            }
+                        });
+                    },
+
+                    changeCity(city_id, city) {
+                        city = this.cityFormat(city);
+                        console.log("city" + city_id)
+                        this.addressVisible = false;
+                        this.submitForm.city_id = city_id;
+                        this.submitForm.city = city;
+                    },
+
+
+
+                    cityFormat(v) {
+                        v = v.replace('维吾尔自治区', '');
+                        v = v.replace('回族自治区', '');
+                        v = v.replace('壮族自治区', '');
+                        v = v.replace('自治区', '');
+                        v = v.replace('省', '');
+                        v = v.replace('市', '');
+                        return v;
+                    },
+                    changeIndustry(v) {
+                        this.submitForm.industry = v;
+                        this.industryVisible = false;
+                    },
+
+                    selectChange(ev) {
+                        this.selectText = ev.target.innerText;
+                        this.selectOptionVisible = false;
+                    },
+                    initView() {
+
+                    },
+                    popConfirm() {
+                        console.log("333")
+                        console.log(defaultLoc)
+                        if (!this.submitForm.city) {
+                            this.$message.error("请选择所在意向城市")
+                            return false;
+                        }
+                        if (!this.submitForm.industry) {
+                            this.$message.error("请选择公司行业")
+                            return false;
+                        }
+                        if (!this.submitForm.company_name_length) {
+                            this.$message.error("请选择字号长度")
+                            return false;
+                        }
+                        this.mDialogVisible = true;
+                    },
+                },
+            }).$mount('#app');
+        } catch (ex) {
+            alert(ex.message);
+        }
+         // 定位接口（百度api）
+         $.getScript("http://api.map.baidu.com/location/ip?ak=0oXVpcFufmrzYNrdfADRjTGLmGohtVDD&callback=showLocation");
+        function showLocation(data) {
+            var defaultLoc = "";
+            console.log(data.content.address_detail.city);
+            this.defaultLoc = data.content.address_detail.city
+            console.log(defaultLoc)
+        }
+        // 咨讯框隐藏
+        var talkBox = document.getElementsByClassName("talk-box")[0];
+        function closebox() {
+            console.log("111")
+            talkBox.className = "none"
+        }
+        
+    </script>
+</body>
+
+</html>

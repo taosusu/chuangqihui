@@ -1,0 +1,274 @@
+body {
+    background: #447efe;
+}
+
+div.body-wrapper {
+    background: url(../../assets/img/heming_wrap_bg.png) center top no-repeat #447efe;
+    background-size: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+div.body-wrapper div.banner-bg {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    color: #fff;
+}
+
+div.body-wrapper div.banner-bg div.banner-title {
+    margin-top: .5rem;
+    font-size: .5rem;
+    line-height: .5rem;
+    text-align: center;
+}
+
+div.body-wrapper div.banner-bg div.banner-subtitle {
+    margin: .18rem .5rem;
+    text-align: right;
+    font-size: .3rem;
+}
+
+div.body-wrapper div.banner-bg div.banner-center {
+    margin-top: 2.4rem;
+    font-size: .3rem;
+    line-height: .3rem;
+    text-align: center;
+}
+
+div.body-wrapper div.banner-bg div.banner-center img {
+    height: .3rem;
+}
+
+div.body-wrapper div.banner-bg div.banner-center span {
+    margin: 0 .1rem;
+}
+
+div.submit-form {
+    margin: 4.8rem .4rem 0 .4rem;
+}
+
+div.submit-form div.quick-form-item {
+    margin-bottom: .25rem;
+}
+
+div.submit-form div.quick-form-item:last-child {
+    margin-bottom: 0;
+}
+
+div.submit-form div.quick-form-item input {
+    border: 0;
+    background: #fff;
+    border-radius: .1rem;
+    height: .9rem;
+    line-height: .9rem;
+    font-size: .24rem;
+    padding: 0 .5rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+div.submit-form div.quick-form-item button {
+    border: 0;
+    -webkit-appearance: none;
+    background: #fff;
+    text-align: center;
+    height: .98rem;
+    width: 100%;
+    border-radius: .1rem;
+    display: block;
+    font-size: .32rem;
+    line-height: .98rem;
+    background:linear-gradient(266deg,rgba(147,199,246,1),rgba(16,230,254,1));
+    color: #fff;
+
+}
+
+
+div.submit-form div.quick-form-item div.select-button {
+    line-height: .9rem;
+    border-radius: .1rem;
+    background: #fff;
+    padding: 0 .5rem;
+}
+
+div.submit-form div.quick-form-item div.select-button div.select-view-slot {
+    line-height: .9rem;
+    height: .9rem;
+    position: relative;
+}
+
+div.submit-form div.quick-form-item div.select-button div.select-view-slot span.label {
+    font-size: .24rem;
+    line-height: .9rem;
+    height: .9rem;
+    display: block;
+    color: #666;
+}
+
+div.submit-form div.quick-form-item div.select-button div.select-view-slot span.icon-dropdown {
+    border: solid 1px #aaa;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    width: .2rem;
+    height: .2rem;
+    transform: rotate(45deg);
+    display: block;
+    position: absolute;
+    right: 0;
+    top: .25rem;
+}
+
+div.block {
+    background: #fff;
+    overflow: hidden;
+}
+
+div.block div.block-title {
+    padding-top: 1.18rem;
+    line-height: .3rem;
+    height: .3rem;
+    color: #0A0A09;
+    font-size: .3rem;
+    text-align: center;
+    background: url(../../assets/img/qiming_wrapper_bg.png) center bottom no-repeat #fff;
+    background-size: 100%;
+    font-weight: bold;
+}
+
+div.block div.block-bg {
+    margin: .4rem .4rem 0 .4rem;
+    height: 2.73rem;
+    background: url(../../assets/img/qiming_block-bg.png) right top no-repeat #fff;
+    background-size: 3.04rem;
+    overflow: hidden;
+}
+
+div.block div.block-bg div.block-bg-left {
+    width: 50%;
+    font-size: .24rem;
+    line-height: 1.5;
+    margin-top: .65rem;
+    color: #666666;
+}
+
+div.block div.block-item-title {
+    color: #0A0A09;
+    font-weight: bold;
+    line-height: .3rem;
+    font-size: .3rem;
+    text-align: center;
+    margin-top: .4rem;
+    padding: .25rem 0;
+}
+
+
+div.block div.block-grid {
+    display: grid;
+    grid-gap: .25rem;
+    grid-template-columns: repeat(2, 1fr);
+    background: #f5f5f5;
+    padding: .3rem;
+}
+
+div.block div.block-grid div.block-grid-item {
+    background: #fff;
+    padding: .3rem;
+}
+div.block div.block-grid div.block-grid-item img {
+    height: .5rem;
+    display: block;
+    margin: 0 auto;
+}
+
+div.block div.block-grid div.block-grid-item h3 {
+    margin: .18rem auto;
+    display: block;
+    font-size: .26rem;
+    line-height: .26rem;
+    font-weight: bold;
+    color: #000;
+    text-align: center
+
+}
+
+div.block div.block-grid div.block-grid-item div.desc {
+    color: #666;
+    line-height: 1.5;
+    font-size: .22rem;
+}
+.talk-btn{
+    background-color: #e26227;
+   width: 1rem;
+   height: 1rem;
+   display: block;
+   position: fixed;
+   right: 0.2rem;
+   bottom: 3rem;
+   z-index: 50;
+   border-radius: 0.1rem;
+}
+.talk-btn i{
+   width: 0.7rem;
+   height: 0.7rem;
+   display: block;
+   /* background-color: burlywood; */
+   margin: 0 auto;
+   margin-top: 0.15rem;
+   background: url(../../assets/img/talk.png) center center no-repeat;
+   background-size: 100%;
+}
+.talk-box{
+    width: 3.2rem;
+    height: 2rem;
+    background-color: aquamarine;
+    position: fixed;
+    right: 0.5rem;
+    bottom: 4rem;
+    background: url(../img/talkbox.png) no-repeat;
+    background-size: cover;
+    animation-name: move;
+    animation-duration: 1s;
+    z-index: 99;
+    overflow: hidden;
+}
+@keyframes move {
+    0% {
+        height: 0;
+      /* transform: translate(100px, 100px); */
+    }
+    100% {
+        height: 2rem;
+      /* transform: translate(0, 0); */
+    }
+  }
+.talk-title{
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 0.2rem;
+    margin-top: 0.2rem;
+}
+.talk-box p{
+    font-size: 14px;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-top: 0.2rem;
+}
+.talk-box i{
+    width: 0.4rem;
+    height: 0.4rem;
+    float: right;
+    margin-top: -1.7rem;
+    margin-right: 0.15rem;
+    background: url(../img/close.png) no-repeat;
+    background-size: contain;
+}
+.show{
+    display: block;
+}
+.none{
+    display: none;
+}

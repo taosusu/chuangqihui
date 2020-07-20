@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <title>工商财税 - 创企汇一站式服务</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="../../assets/img/favicon.ico">
+    <link href="../../assets/css/base.css" rel="stylesheet">
+    <link href="../../assets/css/index.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="../../assets/js/rem.js"></script>
+</head>
+
+<body>
+    <div class="body-wrapper">
+        <div class="card-list">
+            <div class="card-item">
+                <a href="qiming.html">
+                    <div class="card-box">
+                        <div class="card-box-divider"><span class="item-title">在线起名</span></div>
+                        <img src="../../assets/img/qiming_icon.png" />
+                        <span class="item-desc">互联网大数据<br>人工智能起名</span>
+                    </div>
+                    <span class="button">推荐起名</span>
+                </a>
+            </div>
+            <div class="card-item">
+                <a href="heming.html">
+                    <div class="card-box">
+                        <div class="card-box-divider"><span class="item-title">在线核名</span></div>
+                        <img src="../../assets/img/heming_icon.png" />
+                        <span class="item-desc">预先名字查重<br>提升通过率</span>
+                    </div>
+                    <span class="button">免费核名</span>
+                </a>
+            </div>
+            <div class="card-item">
+                <a href="zhuce.html">
+                    <div class="card-box">
+                        <div class="card-box-divider"><span class="item-title">在线注册</span></div>
+                        <img src="../../assets/img/regist_icon.png" />
+                        <span class="item-desc">免费注册公司<br>3天下证</span>
+                    </div>
+                    <span class="button">快速注册</span>
+                </a>
+            </div>
+            <div class="card-item">
+                <a href="xunjia.html">
+                    <div class="card-box">
+                        <div class="card-box-divider"><span class="item-title">我要询价</span></div>
+                        <img src="../../assets/img/zixun_icon.png" />
+                        <span class="item-desc">注册一个公司要多少钱</span>
+                    </div>
+                    <span class="button">获取报价</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="product-info" style="margin-top: .6rem;">
+            <h3>我们的产品</h3>
+            <div class="prd-desc">一站式服务流程，从起名、设计到注册都交给我们</div>
+            <div class="product-grid">
+                <div class="product-grid-item" onclick="lll()">
+                    <img src="../../assets/img/prd1.png" width="100%">
+                    <span>原创LOGO设计</span>
+                </div>
+                <div class="product-grid-item">
+                    <img src="../../assets/img/prd2.png" width="100%">
+                    <span>企业商标注册</span>
+                </div>
+                <div class="product-grid-item">
+                    <img src="../../assets/img/prd3.png" width="100%">
+                    <span>大数据工商核名</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="font-size: .24rem; text-align: center; background: #fff; padding: .85rem 0 .5rem 0; color: #aaa; ">
+            Copyright &copy; 2019 创企汇 版权所有</div>
+
+        <a href="tel:4001551838"
+            style="background: url(../../assets/img/telephone.png) center center no-repeat; background-size: 100%; width: 1rem; height: 1rem; display: block; position: fixed; right: .2rem; bottom: 1.3rem; "></a>
+        <!-- 咨询按钮，链接直接写在href里 -->
+        <a href="" class="talk-btn"><i></i></a>
+       <!-- 咨讯框 -->
+            <div class="talk-box">
+            <div class="talk-title">
+                客服为您服务
+            </div>
+            <p>客服等候多时，有什么可以帮助您的？</p>
+            <i onclick="closebox()"></i>
+        </div>
+
+    </div>
+
+    <script>
+        var talkBox = document.getElementsByClassName("talk-box")[0];
+        function closebox() {
+            console.log("111")
+            talkBox.className = "none"
+        }
+    </script>
+
+</body>
+
+</html>

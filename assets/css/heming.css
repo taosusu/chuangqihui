@@ -234,6 +234,7 @@ div.block div.block-grid div.block-grid-item div.desc {
     animation-duration: 1s;
     z-index: 99;
     overflow: hidden;
+    display: none;
 }
 @keyframes move {
     0% {

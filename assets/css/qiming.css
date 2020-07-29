@@ -293,14 +293,17 @@ div.body-wrapper {
     animation-duration: 1s;
     z-index: 99;
     overflow: hidden;
+    display: none;
 }
 @keyframes move {
     0% {
         height: 0;
+        /* display: block; */
       /* transform: translate(100px, 100px); */
     }
     100% {
         height: 2rem;
+        /* display: block; */
       /* transform: translate(0, 0); */
     }
   }

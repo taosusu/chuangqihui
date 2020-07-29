@@ -85,24 +85,18 @@
             style="background: url(../../assets/img/telephone.png) center center no-repeat; background-size: 100%; width: 1rem; height: 1rem; display: block; position: fixed; right: .2rem; bottom: 1.3rem; "></a>
         <!-- 咨询按钮，链接直接写在href里 -->
         <a href="" class="talk-btn"><i></i></a>
-       <!-- 咨讯框 -->
-            <div class="talk-box">
+        <!-- 咨讯框 -->
+        <div class="talk-box" onclick="jump()">
             <div class="talk-title">
                 客服为您服务
             </div>
-            <p>客服等候多时，有什么可以帮助您的？</p>
+            <p id="talk-p">客服等候多时，有什么可以帮助您的？</p>
             <i onclick="closebox()"></i>
         </div>
 
     </div>
 
-    <script>
-        var talkBox = document.getElementsByClassName("talk-box")[0];
-        function closebox() {
-            console.log("111")
-            talkBox.className = "none"
-        }
-    </script>
+    <script src="../../assets/js/main.js"></script>
 
 </body>
 

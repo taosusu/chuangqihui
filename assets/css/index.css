@@ -151,8 +151,11 @@
     background-size: cover;
     animation-name: move;
     animation-duration: 1s;
+    /* animation-delay: 5s; */
+    /* animation:move 1s linear 10s 0 normal; */
     z-index: 99;
     overflow: hidden;
+    display: none;
 }
 @keyframes move {
     0% {
